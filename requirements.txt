@@ -1,7 +1,4 @@
-name: app_environment
-channels:
-  - snowflake
+# requirements.txt
 dependencies:
-  - python=3.8.*
   - snowflake-snowpark-python=
   - streamlit=
