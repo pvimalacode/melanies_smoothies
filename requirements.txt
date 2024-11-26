@@ -1,4 +1,4 @@
 # requirements.txt
-dependencies:
+#dependencies:
   - snowflake-snowpark-python
   - streamlit
