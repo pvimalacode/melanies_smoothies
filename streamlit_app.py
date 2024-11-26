@@ -12,8 +12,7 @@ st.write(
     """
 )
 
-smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
-st.text(smoothiefroot_response)
+
 
 
 
@@ -44,6 +43,8 @@ ingredients_list = st.multiselect(
     max_selections=5,
     key='fruit_list'
 )
+smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
+st.text(smoothiefroot_response)
 
 ingredients_string = ' '.join(ingredients_list)
 ingredients_string_txt = ' , '.join(ingredients_list)
