@@ -32,8 +32,9 @@ def clear_text():
 
 cnx = st.connection("snowflake")
 session = cnx.session()
-my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'))
-#st.dataframe(data=my_dataframe, use_container_width=True)
+my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'),col('SEARCH_ON'))
+st.dataframe(data=my_dataframe, use_container_width=True)
+st.stop()
 
 
 
@@ -51,7 +52,7 @@ if ingredients_string and name_on_order:
     my_insert_stmt = """ insert into smoothies.public.orders(ingredients,name_on_order)
                 values ('""" + ingredients_string + """','""" +  name_on_order +  """');"""
     for ingredient in ingredients_list:
-        st.subheader(ingredient + 'Nutrition Information')
+        st.subheader(ingredient + ' Nutrition Information')
         smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/"+ ingredient)
         #st.write("https://my.smoothiefroot.com/api/fruit/"+ ingredient)
         sf_df = st.dataframe(data=smoothiefroot_response.json(),use_container_width=True)
