@@ -48,14 +48,14 @@ ingredients_string = ' '.join(ingredients_list)
 ingredients_string_txt = ' , '.join(ingredients_list)
 
 if ingredients_string and name_on_order:
-   
-    smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
-    sf_df = st.dataframe(data=smoothiefroot_response.json(),use_container_width=True)
-
-
     my_insert_stmt = """ insert into smoothies.public.orders(ingredients,name_on_order)
                 values ('""" + ingredients_string + """','""" +  name_on_order +  """');"""
-    
+    for ingredient in ingredients_list:
+        st.subheader(ingredient + 'Nutrition Information')
+        smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon"+ ingredient)
+        sf_df = st.dataframe(data=smoothiefroot_response.json(),use_container_width=True)
+
+
 def insert_data():
     session.sql(my_insert_stmt).collect()
     st.success('Your Smoothie with '+ingredients_string_txt+' is ordered,'+name_on_order+'!', icon="✅")
