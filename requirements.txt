@@ -1,4 +1,4 @@
 
 snowflake-snowpark-python
 streamlit
-#- snowflake-snowpark-python==0.7.0 
+requests
